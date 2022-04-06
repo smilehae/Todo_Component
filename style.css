@@ -74,6 +74,7 @@ h1 {
 
 ul.todo-list li {
   list-style: none;
+  padding: 0.3rem;
 }
 
 ul.todo-list li.checked {
