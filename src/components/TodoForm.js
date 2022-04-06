@@ -16,7 +16,7 @@ export default function TodoForm({ $target, onSubmit }) {
       $form.addEventListener("submit", (e) => {
         e.preventDefault();
         const $input = $form.querySelector("input");
-        if (onSubmit) {
+        if (onSubmit && $input.value.trim()) {
           onSubmit($input.value);
         }
         $input.value = "";
