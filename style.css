@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Chewy&family=Londrina+Shadow&family=Megrim&family=Poiret+One&family=Rampart+One&display=swap");
+@font-face {
+  font-family: "Cafe24SsurroundAir";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Cafe24SsurroundAir", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: bisque;
+  background: url("./img/mountain_daniel_leone.jpg") center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  color: white;
+  font-family: "Megrim", "Cafe24SsurroundAir", cursive;
+  text-align: center;
+}
+
+.app {
+  background-color: rgba(74, 158, 255, 0.123);
+  border: 1px solid gainsboro;
+  box-shadow: 5px 5px 5px 5px rgba(255, 255, 255, 0.089);
+
+  min-width: 20rem;
+  min-height: 20rem;
+  height: fit-content;
+
+  margin-top: 5rem;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+
+  color: white;
+  font-size: 16px;
+}
+
+.add-form {
+  width: 100%;
+}
+
+.add-form input {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+
+  border: none;
+  border-bottom: 1px solid gainsboro;
+  margin: 1rem 0;
+
+  text-align: center;
+
+  color: white;
+}
+
+.add-form input:focus {
+  outline: 0;
+}
+
+.add-form input::placeholder {
+  color: rgba(204, 231, 255, 0.712);
+}
+
+ul.todo-list li {
+  list-style: none;
+}
+
+ul.todo-list li.checked {
+  text-decoration: line-through;
+  color: bisque;
+}

@@ -25,7 +25,7 @@ export default function TodoList({ $target, initialState = [] }) {
     }
 
     $todo.innerHTML = `
-      <ul>
+      <ul class="todo-list">
         ${
           this.state.length === 0
             ? "<li>오늘의 할일을 적어주세요!</li>"
@@ -34,11 +34,8 @@ export default function TodoList({ $target, initialState = [] }) {
                   //배열이지만 찾고자 하는 요소가 없을 경우
                   if (isInObject("text", todo)) {
                     return `
-                    <li>
-                      <input type="checkbox" id="todo${i}" ${
-                      todo.isCompleted ? "checked" : ""
-                    }>
-                      <label for="todo${i}">${todo.text}</label>
+                    <li class="${todo.isCompleted ? "checked" : ""}">
+                      ${todo.text}
                     </li>`;
                   }
                 })
