@@ -10,9 +10,11 @@ export const isInObject = (property, obj) => {
   return `${property}` in obj;
 };
 
-export const isNewCalled = (newTarget) => {
+export const isNewCalled = (newTarget, componentName = "") => {
   if (!newTarget) {
-    console.error("new를 호출해서 사용해주세요.");
+    console.error(
+      `${componentName ? componentName + ":" : ""} new를 호출해서 사용해주세요.`
+    );
     return false;
   }
   return true;

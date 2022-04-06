@@ -5,10 +5,10 @@
 import { getValidArr, isInObject, isNewCalled } from "../util.js";
 
 export default function TodoList({ $target, initialState = [] }) {
+  if (!isNewCalled(new.target, "TodoList")) return;
+
   const $todo = document.createElement("div");
   $target.appendChild($todo);
-
-  if (!isNewCalled(new.target)) return;
 
   this.state = getValidArr(initialState);
 
