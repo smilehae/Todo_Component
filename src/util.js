@@ -9,3 +9,11 @@ export const getValidArr = (arr, defaultVal = []) => {
 export const isInObject = (property, obj) => {
   return `${property}` in obj;
 };
+
+export const isNewCalled = (newTarget) => {
+  if (!newTarget) {
+    console.error("new를 호출해서 사용해주세요.");
+    return false;
+  }
+  return true;
+};

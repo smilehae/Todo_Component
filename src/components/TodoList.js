@@ -2,11 +2,13 @@
   state의 구조
   [{text:해야할 일1},{text:해야할 일2}]
 */
-import { getValidArr, isInObject } from "../util.js";
+import { getValidArr, isInObject, isNewCalled } from "../util.js";
 
 export default function TodoList({ $target, initialState = [] }) {
   const $todo = document.createElement("div");
   $target.appendChild($todo);
+
+  if (!isNewCalled(new.target)) return;
 
   this.state = getValidArr(initialState);
 
