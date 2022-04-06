@@ -15,6 +15,6 @@ export default function App({ $app }) {
   });
   const todoList = new TodoList({
     $target: $app,
-    initialState: [],
+    initialState: dummyTodoListData,
   });
 }
