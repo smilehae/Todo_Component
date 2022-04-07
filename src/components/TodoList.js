@@ -4,7 +4,12 @@
 */
 import { getValidArr, isInObject, isNewCalled } from "../util.js";
 
-export default function TodoList({ $target, initialState = [], onToggled }) {
+export default function TodoList({
+  $target,
+  initialState = [],
+  onToggle,
+  onRemove,
+}) {
   if (!isNewCalled(new.target, "TodoList")) return;
 
   const $todo = document.createElement("div");
@@ -18,12 +23,32 @@ export default function TodoList({ $target, initialState = [], onToggled }) {
     this.state = getValidArr(newState, this.state);
     this.render();
   };
+  const makeListComponent = (todo) => {
+    return `
+    <li data-id="${todo.id}" class="${todo.isCompleted ? "checked" : ""}">
+      <span>${todo.text}</span>
+      <button>❌</button>
+    </li>`;
+  };
+
+  const toggleId = (id) => {
+    if (onToggle) {
+      onToggle(id);
+    }
+  };
+
+  const removeId = (id) => {
+    if (onRemove) {
+      onRemove(id);
+    }
+  };
 
   this.render = () => {
     //아예 배열이 아닐 경우
     if (!getValidArr(this.state)) {
       console.log("유효한 state가 아닙니다. 현재 상태 :", this.state);
     }
+    //TODO: state의 각 요소가 id와 text, isCompleted를 가지고 있는지 확인=>있는 것만 출력
 
     $todo.innerHTML = `
       <ul class="todo-list">
@@ -34,38 +59,32 @@ export default function TodoList({ $target, initialState = [], onToggled }) {
                 .map((todo) => {
                   //배열이지만 찾고자 하는 요소가 없을 경우
                   if (isInObject("text", todo) && isInObject("id", todo)) {
-                    return `
-                    <li data-id="${todo.id}" class="${
-                      todo.isCompleted ? "checked" : ""
-                    }">
-                      ${todo.text}
-                    </li>`;
+                    return makeListComponent(todo);
                   }
                 })
                 .join("")
         }
       </ul>
     `;
-    const $lists = document.querySelectorAll(".todo-list li");
-    $lists.forEach((li) => {
-      li.addEventListener("click", (e) => {
-        const { id } = e.target.dataset;
-        const newState = this.state.map((todo) => {
-          if (parseInt(todo.id) === parseInt(id)) {
-            return {
-              ...todo,
-              isCompleted: !todo.isCompleted,
-            };
-          }
-          return todo;
-        });
-        this.setState(newState);
-        if (onToggled) {
-          onToggled(id);
-        }
-      });
-    });
   };
+  $todo.addEventListener("click", (e) => {
+    console.log(e.target);
+    if (e.target.matches("li")) {
+      const { id } = e.target.dataset;
+      toggleId(id);
+      return;
+    }
+    if (e.target.matches("span")) {
+      const { id } = e.target.parentNode.dataset;
+      toggleId(id);
+      return;
+    }
+    if (e.target.matches("button")) {
+      const { id } = e.target.parentNode.dataset;
+      removeId(id);
+      return;
+    }
+  });
 
   this.render();
 }
