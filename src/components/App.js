@@ -20,7 +20,7 @@ import { dummyTodoListData, dummyTodoListDataRude } from "../data.js";
 export default function App({ $app }) {
   if (!isNewCalled(new.target, "App")) return;
 
-  this.state = {
+  this.state = JSON.parse(localStorage.getItem("state")) || {
     id: 10,
     todoList: [],
   };
@@ -42,6 +42,7 @@ export default function App({ $app }) {
     this.state = newState;
     todoListComponent.setState(this.state.todoList);
     todoCountComponent.setState(this.state.todoList);
+    localStorage.setItem("state", JSON.stringify(this.state));
   };
 
   new Header({ $target: $app, text: "To Do List" });
