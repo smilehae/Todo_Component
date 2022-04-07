@@ -20,6 +20,7 @@ export default function TodoList({
 
   //유효하지 않을 시 이전 값
   this.setState = (newState) => {
+    // console.log("state change", this.state, newState);
     this.state = getValidArr(newState, this.state);
     this.render();
   };

@@ -5,17 +5,25 @@ import TodoForm from "./TodoForm.js";
 //Rude기 접미사인 더미값은 일부러 예외케이스를 첨가한 값입니다.
 /*
   state구조
-  {id}
+  {
+    id:1,
+    todoList:[
+      {id:1,text:"sample text",isCompleted:false}
+    ]
+  }
 
 */
 
 export default function App({ $app }) {
   this.state = {
     id: 10,
+    todoList: dummyTodoListData,
   };
 
   this.setState = (newState) => {
+    // console.log(this.state, newState);
     this.state = newState;
+    todoList.setState(this.state.todoList);
   };
 
   new Header({ $target: $app, text: "To Do List" });
@@ -23,19 +31,38 @@ export default function App({ $app }) {
     $target: $app,
     onSubmit: (inputData) => {
       const newId = this.state.id;
-      this.setState({ id: (this.state.id += 1) });
       const newTodo = { text: inputData, isCompleted: false, id: newId };
-      todoList.setState([...todoList.state, newTodo]);
+      this.setState({
+        id: (this.state.id += 1),
+        todoList: [...todoList.state, newTodo],
+      });
     },
   });
   const todoList = new TodoList({
     $target: $app,
-    initialState: dummyTodoListData,
+    initialState: this.state.todoList,
     onToggle: (id) => {
-      console.log("toggle", id);
+      const { todoList } = this.state;
+      this.setState({
+        ...this.state,
+        todoList: todoList.map((todo) => {
+          if (parseInt(todo.id) === parseInt(id)) {
+            return {
+              ...todo,
+              isCompleted: todo.isCompleted ? !todo.isCompleted : true,
+            };
+          } else {
+            return todo;
+          }
+        }),
+      });
     },
     onRemove: (id) => {
-      console.log("remove", id);
+      const { todoList } = this.state;
+      this.setState({
+        ...this.state,
+        todoList: todoList.filter((todo) => parseInt(todo.id) !== parseInt(id)),
+      });
     },
   });
 }
