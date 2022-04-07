@@ -5,6 +5,7 @@ import TodoCount from "./TodoCount.js";
 import { isNewCalled, areInObjectWithType } from "../util.js";
 import { dummyTodoListData, dummyTodoListDataRude } from "../data.js";
 //테스트 할 때 사용한 값입니다. Rude는 validation 처리 확인 용도로 사용했습니다.
+
 /*
   state구조 : 모든 데이터를 app에서 관리합니다
   {
@@ -26,7 +27,14 @@ export default function App({ $app }) {
 
   this.setState = (newState) => {
     if (
-      !areInObjectWithType(newState, [["id"], ["todoList", "array"]], "App")
+      !areInObjectWithType(
+        newState,
+        [
+          ["id", "number"],
+          ["todoList", "array"],
+        ],
+        "App"
+      )
     ) {
       return;
     }

@@ -1,5 +1,5 @@
 /*
-  state의 구조
+  state의 구조 : todoList를 받아 렌더링합니다.
   [{id:1,text:해야할 일1, isCompleted:false},{id:2,text:해야할 일2, isCompleted:false}]
 */
 import { getValidArr, areInObjectWithType, isNewCalled } from "../util.js";
@@ -15,14 +15,13 @@ export default function TodoList({
   const $todo = document.createElement("div");
   $target.appendChild($todo);
 
-  //배열이 아닐 시 빈배열
   this.state = getValidArr(initialState);
 
-  //유효하지 않을 시 이전 값
   this.setState = (newState) => {
     this.state = getValidArr(newState, this.state);
     this.render();
   };
+
   const makeListComponent = (todo) => {
     return `
     <li data-id="${todo.id}" class="${todo.isCompleted ? "checked" : ""}">
@@ -66,17 +65,20 @@ export default function TodoList({
       </ul>
     `;
   };
+
   $todo.addEventListener("click", (e) => {
     if (e.target.matches("li")) {
       const { id } = e.target.dataset;
       toggleId(id);
       return;
     }
+
     if (e.target.matches("span")) {
       const { id } = e.target.parentNode.dataset;
       toggleId(id);
       return;
     }
+
     if (e.target.matches("button")) {
       const { id } = e.target.parentNode.dataset;
       removeId(id);
