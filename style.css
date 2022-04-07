@@ -96,3 +96,10 @@ ul.todo-list button {
   background-color: rgba(0, 0, 0, 0);
   border: none;
 }
+.todo-counter {
+  padding: 1rem 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-grow: 1;
+}
