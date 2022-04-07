@@ -2,7 +2,11 @@
     state상태
     [{id:1,text:해야할 일1, isCompleted:false}]  모든 todoList가 들어있습니다.
 */
+import { isNewCalled } from "../util.js";
+
 export default function TodoCount({ $target, initialState }) {
+  if (!isNewCalled(new.target, "TodoCount")) return;
+
   const $counter = document.createElement("div");
   $counter.classList.add("todo-counter");
   $target.appendChild($counter);

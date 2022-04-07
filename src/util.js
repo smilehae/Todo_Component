@@ -6,6 +6,21 @@ export const getValidArr = (arr, defaultVal = []) => {
     return defaultVal;
   }
 };
+
+export const areInObject = (obj, propertyArr, componentName = "") => {
+  for (const property of propertyArr) {
+    if (!(property in obj)) {
+      console.error(
+        `${
+          componentName ? componentName + ":" : ""
+        } property "${property}"가 존재하지 않는 값입니다. 잘못된 접근입니다.`
+      );
+      return false;
+    }
+  }
+  return true;
+};
+
 export const isInObject = (property, obj) => {
   return `${property}` in obj;
 };

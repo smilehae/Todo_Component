@@ -3,6 +3,7 @@ import TodoList from "./TodoList.js";
 import { dummyTodoListData, dummyTodoListDataRude } from "../data.js";
 import TodoForm from "./TodoForm.js";
 import TodoCount from "./TodoCount.js";
+import { isNewCalled, areInObject } from "../util.js";
 //Rude기 접미사인 더미값은 일부러 예외케이스를 첨가한 값입니다.
 /*
   state구조
@@ -16,13 +17,20 @@ import TodoCount from "./TodoCount.js";
 */
 
 export default function App({ $app }) {
+  if (!isNewCalled(new.target, "App")) return;
+
   this.state = {
     id: 10,
     todoList: dummyTodoListData,
   };
 
   this.setState = (newState) => {
-    // console.log(this.state, newState);
+    // TODO: newState validation
+
+    if (!areInObject(newState, ["id", "todoList"], "App")) {
+      return;
+    }
+
     this.state = newState;
     todoListComponent.setState(this.state.todoList);
     todoCountComponent.setState(this.state.todoList);
