@@ -2,7 +2,7 @@
   state의 구조
   [{id:1,text:해야할 일1, isCompleted:false},{id:2,text:해야할 일2, isCompleted:false}]
 */
-import { getValidArr, isInObject, isNewCalled } from "../util.js";
+import { getValidArr, areInObjectWithType, isNewCalled } from "../util.js";
 
 export default function TodoList({
   $target,
@@ -20,7 +20,6 @@ export default function TodoList({
 
   //유효하지 않을 시 이전 값
   this.setState = (newState) => {
-    // console.log("state change", this.state, newState);
     this.state = getValidArr(newState, this.state);
     this.render();
   };
@@ -45,12 +44,6 @@ export default function TodoList({
   };
 
   this.render = () => {
-    //아예 배열이 아닐 경우
-    if (!getValidArr(this.state)) {
-      console.log("유효한 state가 아닙니다. 현재 상태 :", this.state);
-    }
-    //TODO: state의 각 요소가 id와 text, isCompleted를 가지고 있는지 확인=>있는 것만 출력
-
     $todo.innerHTML = `
       <ul class="todo-list">
         ${
@@ -58,8 +51,13 @@ export default function TodoList({
             ? "<li>오늘의 할일을 적어주세요!</li>"
             : this.state
                 .map((todo) => {
-                  //배열이지만 찾고자 하는 요소가 없을 경우
-                  if (isInObject("text", todo) && isInObject("id", todo)) {
+                  if (
+                    areInObjectWithType(
+                      todo,
+                      [["id", "number"], ["text"]],
+                      "TodoList"
+                    )
+                  ) {
                     return makeListComponent(todo);
                   }
                 })

@@ -9,7 +9,7 @@ export const dummyTodoListData = [
 
 //일부러 예외케이스를 둔 더미데이터
 export const dummyTodoListDataRude = [
-  { text: "Todo List 개발 끝내기" },
+  { id: 1 },
   { text: "DAY 13 TIL 작성하기" },
   { haha: "DAY 13 강의 복습하기" },
 ];

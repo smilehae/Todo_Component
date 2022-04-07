@@ -2,7 +2,7 @@
     state상태
     [{id:1,text:해야할 일1, isCompleted:false}]  모든 todoList가 들어있습니다.
 */
-import { isNewCalled } from "../util.js";
+import { isNewCalled, getValidArr } from "../util.js";
 
 export default function TodoCount({ $target, initialState }) {
   if (!isNewCalled(new.target, "TodoCount")) return;
@@ -11,10 +11,10 @@ export default function TodoCount({ $target, initialState }) {
   $counter.classList.add("todo-counter");
   $target.appendChild($counter);
 
-  this.state = initialState;
+  this.state = getValidArr(initialState, []);
 
   this.setState = (nextState) => {
-    this.state = nextState;
+    this.state = getValidArr(nextState, this.state);
     this.render();
   };
 

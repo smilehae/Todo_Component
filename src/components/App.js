@@ -1,12 +1,12 @@
 import Header from "./Header.js";
 import TodoList from "./TodoList.js";
-import { dummyTodoListData, dummyTodoListDataRude } from "../data.js";
 import TodoForm from "./TodoForm.js";
 import TodoCount from "./TodoCount.js";
-import { isNewCalled, areInObject, areInObjectWithType } from "../util.js";
-//Rude기 접미사인 더미값은 일부러 예외케이스를 첨가한 값입니다.
+import { isNewCalled, areInObjectWithType } from "../util.js";
+import { dummyTodoListData, dummyTodoListDataRude } from "../data.js";
+//테스트 할 때 사용한 값입니다. Rude는 validation 처리 확인 용도로 사용했습니다.
 /*
-  state구조
+  state구조 : 모든 데이터를 app에서 관리합니다
   {
     id:1,
     todoList:[
@@ -21,12 +21,10 @@ export default function App({ $app }) {
 
   this.state = {
     id: 10,
-    todoList: dummyTodoListData,
+    todoList: [],
   };
 
   this.setState = (newState) => {
-    // TODO: newState validation
-
     if (
       !areInObjectWithType(newState, [["id"], ["todoList", "array"]], "App")
     ) {
