@@ -68,7 +68,6 @@ export default function TodoList({
     `;
   };
   $todo.addEventListener("click", (e) => {
-    console.log(e.target);
     if (e.target.matches("li")) {
       const { id } = e.target.dataset;
       toggleId(id);
