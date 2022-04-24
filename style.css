@@ -36,8 +36,9 @@ button {
   display: flex;
   flex-direction: column;
   min-width: 20rem;
-  min-height: 20rem;
   height: fit-content;
+  max-height: 40rem;
+
   margin-top: 5rem;
   padding: 2rem;
   background-color: rgba(74, 158, 255, 0.123);
@@ -51,6 +52,9 @@ button {
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+}
+.app .todo-container {
+  overflow-y: auto;
 }
 
 .add-form {
@@ -97,4 +101,14 @@ ul.todo-list button {
   align-items: flex-end;
   flex-grow: 1;
   padding: 1rem 0.3rem;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(214, 214, 214);
+}
+*::-webkit-scrollbar-track {
+  background-color: rgba(212, 212, 212, 0.5);
 }

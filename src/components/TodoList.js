@@ -17,6 +17,7 @@ export default function TodoList({
   if (!isContructor(new.target, "TodoList")) return;
 
   const $todo = document.createElement("div");
+  $todo.classList.add("todo-container");
   $target.appendChild($todo);
 
   this.state = isValidArray(initialState);
