@@ -1,4 +1,4 @@
-import { isContructor } from "../utils/validation.js";
+import { isContructor, hasBadWord } from "../utils/validation.js";
 export default function TodoForm({ $target, onSubmit }) {
   if (!isContructor(new.target, "TodoForm")) return;
 
@@ -17,13 +17,20 @@ export default function TodoForm({ $target, onSubmit }) {
         e.preventDefault();
         const $input = $form.querySelector("input");
         const inputVal = $input.value;
+
         if (onSubmit && inputVal.trim()) {
+          console.log(inputVal, hasBadWord(inputVal));
+          if (hasBadWord(inputVal)) {
+            alert("비속어는 사용 금지입니다.");
+            $input.value = "";
+            return;
+          }
           if (inputVal.length > 50) {
             alert("이렇게 큰 목표는 세부 목표로 쪼개서 넣는 건 어떨까요?");
-          } else {
-            onSubmit(inputVal);
-            $input.value = "";
+            return;
           }
+          onSubmit(inputVal);
+          $input.value = "";
         }
       });
     }

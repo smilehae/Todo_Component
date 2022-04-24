@@ -4,6 +4,17 @@ const writeErrorMessge = (message, componentName) => {
   );
 };
 
+const badWords = ["식빵", "시바", "멍자식"];
+
+export const hasBadWord = (targetString) => {
+  for (const badWord of badWords) {
+    if (targetString.includes(badWord)) {
+      return true;
+    }
+  }
+  return false;
+};
+
 export const isValidArray = (arr) => {
   if (arr && Array.isArray(arr)) {
     return true;
