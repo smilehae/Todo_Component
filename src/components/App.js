@@ -3,13 +3,11 @@ import TodoList from "./TodoList.js";
 import TodoForm from "./TodoForm.js";
 import TodoCount from "./TodoCount.js";
 import { isNewCalled, areInObjectWithType } from "../util.js";
-import { dummyTodoListData, dummyTodoListDataRude } from "../data.js";
-//테스트 할 때 사용한 값입니다. Rude는 validation 처리 확인 용도로 사용했습니다.
 
 /*
   state구조 : 모든 데이터를 app에서 관리합니다
   {
-    id:1,
+    todoId:1,
     todoList:[
       {id:1,text:"sample text",isCompleted:false}
     ]
@@ -21,7 +19,7 @@ export default function App({ $app }) {
   if (!isNewCalled(new.target, "App")) return;
 
   this.state = JSON.parse(localStorage.getItem("state")) || {
-    id: 10,
+    todoId: 1,
     todoList: [],
   };
 
@@ -30,7 +28,7 @@ export default function App({ $app }) {
       !areInObjectWithType(
         newState,
         [
-          ["id", "number"],
+          ["todoId", "number"],
           ["todoList", "array"],
         ],
         "App"
@@ -49,10 +47,10 @@ export default function App({ $app }) {
   new TodoForm({
     $target: $app,
     onSubmit: (inputData) => {
-      const newId = this.state.id;
+      const newId = this.state.todoId;
       const newTodo = { text: inputData, isCompleted: false, id: newId };
       this.setState({
-        id: (this.state.id += 1),
+        todoId: (this.state.todoId += 1),
         todoList: [...this.state.todoList, newTodo],
       });
     },

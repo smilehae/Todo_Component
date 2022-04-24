@@ -51,11 +51,7 @@ export default function TodoList({
             : this.state
                 .map((todo) => {
                   if (
-                    areInObjectWithType(
-                      todo,
-                      [["id", "number"], ["text"]],
-                      "TodoList"
-                    )
+                    areInObjectWithType(todo, [["id", "number"]], "TodoList")
                   ) {
                     return makeListComponent(todo);
                   }
