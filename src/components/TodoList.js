@@ -3,9 +3,9 @@
   [{id:1,text:해야할 일1, isCompleted:false},{id:2,text:해야할 일2, isCompleted:false}]
 */
 import {
-  getValidArr,
-  areInObjectWithType,
-  isNewCalled,
+  isValidArray,
+  isValidProperties,
+  isContructor,
 } from "../utils/validation.js";
 
 export default function TodoList({
@@ -14,19 +14,19 @@ export default function TodoList({
   onToggle,
   onRemove,
 }) {
-  if (!isNewCalled(new.target, "TodoList")) return;
+  if (!isContructor(new.target, "TodoList")) return;
 
   const $todo = document.createElement("div");
   $target.appendChild($todo);
 
-  this.state = getValidArr(initialState);
+  this.state = isValidArray(initialState);
 
   this.setState = (newState) => {
-    this.state = getValidArr(newState, this.state);
+    this.state = isValidArray(newState, this.state);
     this.render();
   };
 
-  const makeListComponent = (todo) => {
+  const ListComponent = (todo) => {
     return `
     <li data-id="${todo.id}" class="${todo.isCompleted ? "checked" : ""}">
       <span>${todo.text}</span>
@@ -42,10 +42,8 @@ export default function TodoList({
             ? "<li>오늘의 할일을 적어주세요!</li>"
             : this.state
                 .map((todo) => {
-                  if (
-                    areInObjectWithType(todo, [["id", "number"]], "TodoList")
-                  ) {
-                    return makeListComponent(todo);
+                  if (isValidProperties(todo, [["id", "number"]], "TodoList")) {
+                    return ListComponent(todo);
                   }
                 })
                 .join("")

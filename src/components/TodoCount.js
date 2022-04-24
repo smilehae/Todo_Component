@@ -2,23 +2,23 @@
     state상태 : todoList의 값을 받아 isCompleted 수를 계산 + 표시합니다.
     [{id:1,text:해야할 일1, isCompleted:false}]  모든 todoList가 들어있습니다.
 */
-import { isNewCalled, getValidArr } from "../utils/validation.js";
+import { isContructor, isValidArray } from "../utils/validation.js";
 
 export default function TodoCount({ $target, initialState }) {
-  if (!isNewCalled(new.target, "TodoCount")) return;
+  if (!isContructor(new.target, "TodoCount")) return;
 
   const $counter = document.createElement("div");
   $counter.classList.add("todo-counter");
   $target.appendChild($counter);
 
-  this.state = getValidArr(initialState, []);
+  this.state = isValidArray(initialState, []);
 
   this.setState = (nextState) => {
-    this.state = getValidArr(nextState, this.state);
+    this.state = isValidArray(nextState, this.state);
     this.render();
   };
 
-  const calculateGoal = () => {
+  const calculatedGoal = () => {
     const allCount = this.state.length;
     if (allCount === 0) {
       return {
@@ -39,7 +39,7 @@ export default function TodoCount({ $target, initialState }) {
   };
 
   this.render = () => {
-    const { completedCount, completedRate, allCount } = calculateGoal();
+    const { completedCount, completedRate, allCount } = calculatedGoal();
     $counter.innerHTML = `
         <span class="complete-count"> ${completedCount}개 완료 / 전체 ${allCount}개</span>
         <span class="complete-rate">달성률 ${completedRate}%</span>

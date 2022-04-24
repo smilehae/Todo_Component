@@ -4,7 +4,7 @@ const writeErrorMessge = (message, componentName) => {
   );
 };
 
-export const getValidArr = (arr, defaultVal = []) => {
+export const isValidArray = (arr, defaultVal = []) => {
   if (arr && Array.isArray(arr)) {
     return arr;
   }
@@ -27,7 +27,7 @@ export const areInObject = (obj, propertyArr, componentName = "") => {
   return true;
 };
 
-export const areInObjectWithType = (obj, propertyArr, componentName = "") => {
+export const isValidProperties = (obj, propertyArr, componentName = "") => {
   if (typeof obj !== "object") {
     writeErrorMessge("주어진 값이 객체가 아닙니다.", componentName);
     return false;
@@ -64,7 +64,7 @@ export const areInObjectWithType = (obj, propertyArr, componentName = "") => {
   return true;
 };
 
-export const isNewCalled = (newTarget, componentName = "") => {
+export const isContructor = (newTarget, componentName = "") => {
   if (!newTarget) {
     writeErrorMessge(
       `${componentName ? componentName + ":" : ""} new를 호출해서 사용해주세요.`

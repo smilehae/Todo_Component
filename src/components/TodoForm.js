@@ -1,6 +1,6 @@
-import { isNewCalled } from "../utils/validation.js";
+import { isContructor } from "../utils/validation.js";
 export default function TodoForm({ $target, onSubmit }) {
-  if (!isNewCalled(new.target, "TodoForm")) return;
+  if (!isContructor(new.target, "TodoForm")) return;
 
   const $form = document.createElement("form");
   $form.classList.add("add-form");

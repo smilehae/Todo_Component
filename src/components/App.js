@@ -2,7 +2,7 @@ import Header from "./Header.js";
 import TodoList from "./TodoList.js";
 import TodoForm from "./TodoForm.js";
 import TodoCount from "./TodoCount.js";
-import { isNewCalled, areInObjectWithType } from "../utils/validation.js";
+import { isContructor, isValidProperties } from "../utils/validation.js";
 
 /*
   state구조 : 모든 데이터를 app에서 관리합니다
@@ -16,7 +16,7 @@ import { isNewCalled, areInObjectWithType } from "../utils/validation.js";
 */
 
 export default function App({ $app }) {
-  if (!isNewCalled(new.target, "App")) return;
+  if (!isContructor(new.target, "App")) return;
 
   this.state = JSON.parse(localStorage.getItem("state")) || {
     todoId: 1,
@@ -25,7 +25,7 @@ export default function App({ $app }) {
 
   this.setState = (newState) => {
     if (
-      !areInObjectWithType(
+      !isValidProperties(
         newState,
         [
           ["todoId", "number"],
