@@ -4,17 +4,6 @@ import TodoForm from "./TodoForm.js";
 import TodoCount from "./TodoCount.js";
 import { isContructor, isValidProperties } from "../utils/validation.js";
 
-/*
-  state구조 : 모든 데이터를 app에서 관리합니다
-  {
-    todoId:1,
-    todoList:[
-      {id:1,text:"sample text",isCompleted:false}
-    ]
-  }
-
-*/
-
 export default function App({ $app }) {
   if (!isContructor(new.target, "App")) return;
 

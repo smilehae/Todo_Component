@@ -1,7 +1,3 @@
-/*
-    state상태 : todoList의 값을 받아 isCompleted 수를 계산 + 표시합니다.
-    [{id:1,text:해야할 일1, isCompleted:false}]  모든 todoList가 들어있습니다.
-*/
 import { isContructor, isValidArray } from "../utils/validation.js";
 
 export default function TodoCount({ $target, initialState }) {

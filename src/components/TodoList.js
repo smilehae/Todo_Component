@@ -1,7 +1,3 @@
-/*
-  state의 구조 : todoList를 받아 렌더링합니다.
-  [{id:1,text:해야할 일1, isCompleted:false},{id:2,text:해야할 일2, isCompleted:false}]
-*/
 import {
   isValidArray,
   isValidProperties,
