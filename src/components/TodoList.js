@@ -34,18 +34,6 @@ export default function TodoList({
     </li>`;
   };
 
-  const toggleId = (id) => {
-    if (onToggle) {
-      onToggle(id);
-    }
-  };
-
-  const removeId = (id) => {
-    if (onRemove) {
-      onRemove(id);
-    }
-  };
-
   this.render = () => {
     $todo.innerHTML = `
       <ul class="todo-list">
@@ -67,21 +55,21 @@ export default function TodoList({
   };
 
   $todo.addEventListener("click", (e) => {
-    if (e.target.matches("li")) {
+    if (e.target.matches("li") && onToggle) {
       const { id } = e.target.dataset;
-      toggleId(id);
+      onToggle(id);
       return;
     }
 
-    if (e.target.matches("span")) {
+    if (e.target.matches("span") && onToggle) {
       const { id } = e.target.parentNode.dataset;
-      toggleId(id);
+      onToggle(id);
       return;
     }
 
-    if (e.target.matches("button")) {
+    if (e.target.matches("button") && onRemove) {
       const { id } = e.target.parentNode.dataset;
-      removeId(id);
+      onRemove(id);
       return;
     }
   });
