@@ -29,7 +29,8 @@ export const isValidProperties = (obj, propertyArr, componentName = "") => {
     return false;
   }
 
-  for (const [property, type] of propertyArr) {
+  for (const propertyString of propertyArr) {
+    const [property, type] = propertyString.split(":");
     if (!(property in obj)) {
       writeErrorMessge(
         `property "${property}"가 존재하지 않는 값입니다.`,
@@ -38,6 +39,7 @@ export const isValidProperties = (obj, propertyArr, componentName = "") => {
       return false;
     }
 
+    if (!type) continue;
     switch (type) {
       case "array": {
         if (!Array.isArray(obj[property])) {

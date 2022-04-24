@@ -44,7 +44,7 @@ export default function TodoList({
             ? "<li>오늘의 할일을 적어주세요!</li>"
             : this.state
                 .map((todo) => {
-                  if (isValidProperties(todo, [["id", "number"]], "TodoList")) {
+                  if (isValidProperties(todo, ["id:number"], "TodoList")) {
                     return ListComponent(todo);
                   }
                 })

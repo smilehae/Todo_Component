@@ -14,14 +14,7 @@ export default function App({ $app }) {
 
   this.setState = (newState) => {
     if (
-      !isValidProperties(
-        newState,
-        [
-          ["todoId", "number"],
-          ["todoList", "array"],
-        ],
-        "App"
-      )
+      !isValidProperties(newState, ["todoId:number", "todoList:array"], "App")
     ) {
       return;
     }
