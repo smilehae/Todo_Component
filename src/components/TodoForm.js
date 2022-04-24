@@ -16,10 +16,15 @@ export default function TodoForm({ $target, onSubmit }) {
       $form.addEventListener("submit", (e) => {
         e.preventDefault();
         const $input = $form.querySelector("input");
-        if (onSubmit && $input.value.trim()) {
-          onSubmit($input.value);
+        const inputVal = $input.value;
+        if (onSubmit && inputVal.trim()) {
+          if (inputVal.length > 50) {
+            alert("이렇게 큰 목표는 세부 목표로 쪼개서 넣는 건 어떨까요?");
+          } else {
+            onSubmit(inputVal);
+            $input.value = "";
+          }
         }
-        $input.value = "";
       });
     }
   };
