@@ -34,6 +34,7 @@ export default function TodoForm({ $target, onSubmit }) {
         }
       });
     }
+    $form.querySelector("input").focus();
   };
 
   this.render();
