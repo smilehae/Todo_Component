@@ -63,13 +63,13 @@ export default function App({ $app }) {
       this.setState({
         ...this.state,
         todoList: todoList.map((todo) => {
-          if (parseInt(todo.id) === parseInt(id)) {
+          if (parseInt(todo.id) !== parseInt(id)) {
+            return todo;
+          } else {
             return {
               ...todo,
               isCompleted: todo.isCompleted ? !todo.isCompleted : true,
             };
-          } else {
-            return todo;
           }
         }),
       });
