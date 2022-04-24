@@ -11,10 +11,15 @@ export default function TodoCount({ $target, initialState }) {
   $counter.classList.add("todo-counter");
   $target.appendChild($counter);
 
-  this.state = isValidArray(initialState, []);
+  if (isValidArray(initialState)) {
+    this.state = initialState;
+  } else {
+    this.state = [];
+  }
 
   this.setState = (nextState) => {
-    this.state = isValidArray(nextState, this.state);
+    if (!isValidArray(nextState)) return;
+    this.state = nextState;
     this.render();
   };
 

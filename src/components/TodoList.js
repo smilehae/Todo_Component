@@ -20,10 +20,15 @@ export default function TodoList({
   $todo.classList.add("todo-container");
   $target.appendChild($todo);
 
-  this.state = isValidArray(initialState);
+  if (isValidArray(initialState)) {
+    this.state = initialState;
+  } else {
+    this.state = [];
+  }
 
   this.setState = (newState) => {
-    this.state = isValidArray(newState, this.state);
+    if (!isValidArray(newState)) return;
+    this.state = newState;
     this.render();
   };
 

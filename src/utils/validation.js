@@ -4,12 +4,12 @@ const writeErrorMessge = (message, componentName) => {
   );
 };
 
-export const isValidArray = (arr, defaultVal = []) => {
+export const isValidArray = (arr) => {
   if (arr && Array.isArray(arr)) {
-    return arr;
+    return true;
   }
-  writeErrorMessge("해당 값은 배열이 아니므로 설정 상 기본 값이 들어갑니다.");
-  return defaultVal;
+  writeErrorMessge("해당 값은 배열이 아니므로 반영되지 않습니다.");
+  return false;
 };
 
 export const areInObject = (obj, propertyArr, componentName = "") => {
