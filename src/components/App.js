@@ -2,7 +2,7 @@ import Header from "./Header.js";
 import TodoList from "./TodoList.js";
 import TodoForm from "./TodoForm.js";
 import TodoCount from "./TodoCount.js";
-import { isNewCalled, areInObjectWithType } from "../util.js";
+import { isNewCalled, areInObjectWithType } from "../utils/validation.js";
 
 /*
   state구조 : 모든 데이터를 app에서 관리합니다

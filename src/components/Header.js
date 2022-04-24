@@ -1,4 +1,4 @@
-import { isNewCalled } from "../util.js";
+import { isNewCalled } from "../utils/validation.js";
 
 export default function Header({ $target, text = "" }) {
   if (!isNewCalled(new.target, "Header")) return;

@@ -1,4 +1,4 @@
-import { isNewCalled } from "../util.js";
+import { isNewCalled } from "../utils/validation.js";
 export default function TodoForm({ $target, onSubmit }) {
   if (!isNewCalled(new.target, "TodoForm")) return;
 
